@@ -8,3 +8,5 @@
 
 ### Quick Start
 - [Installing](./React/QuickStart/Install.md)
+- [Hello World](./React/QuickStart/HelloWorld.md)
+- [Introducing JSX](./React/QuickStart/Introducing_JSX.md)
