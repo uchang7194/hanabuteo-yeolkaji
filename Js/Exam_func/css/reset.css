@@ -1,0 +1,28 @@
+html, body {
+  margin: 0;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  position: relative;
+  height: 100vh;
+  font-size: 1.4rem;
+}
+
+button {
+  padding: 0;
+  background: transparent;
+  border: 0 none;
+}
+
+fieldset {
+  padding: 0;
+  border: 0 none;
+}
+
+input {
+  border: 0 none;
+}
