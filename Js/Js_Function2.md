@@ -52,3 +52,4 @@ function max() {
 
 console.log('max: ', max(2, 5, 8)); // 8
 ```
+
