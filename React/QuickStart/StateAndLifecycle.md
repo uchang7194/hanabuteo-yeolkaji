@@ -386,3 +386,51 @@ componentDidMount() {
 ## 데이터 흐름이 아래로 흐릅니다.
 
 부모와 자식컴포넌트 둘다 특정 컴포넌트가 stateful 또는 stateless인지 알 수 없고 함수 또는 클래스로 정의 되었는지 신경 써서는 안됩니다.
+
+이것은 왜 스테이트가 로컬 또는 캡슐화되어진 이유입니다. 이것은 그것을 설정하고 소유하는 것 이외에는 다른 컴포넌트에 접근할 수 없습니다.
+
+컴포넌트는 자식 컴포넌트에 props로써 state를 보내줄 수 있습니다.
+```javascript
+<h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+```
+
+이것은 또한 유저가 정의한 컴포넌트에도 작동합니다.
+```javascript
+<FormattedDate date={this.state.date} />
+```
+
+`FormattedDate` 컴포넌트는 props로써 `date`를 받고 `Clock`의 state나 `Clock`의 props 또는 정적인 데이타 인지 아닌지 알 필요가 없이 받을 수 있습니다. 
+```javascript
+function FormattedDate(props) {
+  return <h2>It is {props.date.toLocaleTimeString()}.</h2>;
+}
+```
+[CodePen에서 시작하세요!](https://codepen.io/gaearon/pen/zKRqNB?editors=0010)
+
+이 것을 일반적으로 "top-down" 또는 "unidirectional" data flow라고 부릅니다. 어느 스테이트든 항상 몇몇 특이한 컴포넌트에 의해서 소유되어집니다. 어느 데이타 또는 UI는 트리의 아래 컴포넌트에 영향을 미칠 수 있습니다.
+
+만약 당신이 컴포넌트 트리를 props의 폭포로 상상한다면 각 컴포넌트의 스테이트는 임의의 포인트에서 그것을 추가하는 water source와 같을 것입니다. 
+
+정말로 고립되어져 있는 모든 컴포넌트를 보기 위해서 우리는 세개의 `Clock` 컴포넌트를 렌더할 `App` 컴포넌트를 생성할 수 있습니다.
+```javascript
+function App() {
+  return (
+    <div>
+      <Clock />
+      <Clock />
+      <Clock />
+    </div>
+  );
+}
+
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+);
+```
+
+[CodePen에서 시작하세요!](https://codepen.io/gaearon/pen/vXdGmd?editors=0010)
+
+각 `Clock`은 그것자신의 타이머를 셋업하고 개별적으로 업데이트합니다.
+
+리액트 앱에서 컴포넌트가 stateful 또는 stateless인지 아닌지는 시간이 지나면 바뀌는 컴포넌트의 세부사항을 고려합니다. 당신은 stateful 컴포넌트 안에서 stateless 컴포넌트를 사용할 수 있습니다. 그리고 그 반대로 사용할 수 있습니다.

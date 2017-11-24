@@ -12,3 +12,4 @@
 - [Introducing JSX](./React/QuickStart/Introducing_JSX.md)
 - [Rendering Element](./React/QuickStart/RenderingElement.md)
 - [Component and Props](./React/QuickStart/ComponentsAndProps.md)
+- [State and Lifecycle](./React/QuickStart/StateAndLifecycle.md)
